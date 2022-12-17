@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "ecr" {
   provider     = aws.default
-  name         = "simple-node-app-with-terraform-on-aws"
+  name         = var.aws_ecr_repository_name
   force_delete = true
 }
 

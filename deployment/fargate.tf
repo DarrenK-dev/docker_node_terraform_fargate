@@ -12,24 +12,6 @@ resource "aws_ecs_task_definition" "backend_task" {
   // Fargate requires task definitions to have an execution role ARN to support ECR images
   execution_role_arn = aws_iam_role.ecs_role.arn
 
-  #   container_definitions = <<EOT
-  # [
-  #     {
-  #         "name": "example_app_container",
-  #         "image": "041332443526.dkr.ecr.us-east-1.amazonaws.com/simple-node-app-with-terraform-on-aws:latest",
-  #         "memory": 512,
-  #         "essential": true,
-  #         "portMappings": [
-  #             {
-  #                 "containerPort": 3003,
-  #                 "hostPort": 3003
-  #             }
-  #         ]
-  #     }
-  # ]
-  # EOT
-
-
   container_definitions = jsonencode([
     {
       name      = "example_app_container"
@@ -39,8 +21,8 @@ resource "aws_ecs_task_definition" "backend_task" {
       essential = true
       portMappings = [
         {
-          containerPort = 3003
-          hostPort      = 3003
+          containerPort = var.application_port_number
+          hostPort      = var.application_port_number
         }
       ]
     }
@@ -58,7 +40,7 @@ resource "aws_ecs_service" "backend_service" {
   task_definition = aws_ecs_task_definition.backend_task.arn
 
   launch_type   = "FARGATE"
-  desired_count = 1
+  desired_count = var.fargate_desired_count
 
   network_configuration {
     subnets          = ["${aws_subnet.public_a.id}", "${aws_subnet.public_b.id}"]

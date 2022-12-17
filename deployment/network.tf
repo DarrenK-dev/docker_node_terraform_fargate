@@ -48,7 +48,7 @@ resource "aws_security_group" "custom_security_group" {
 
   ingress {
     from_port   = 80
-    to_port     = 3003
+    to_port     = var.application_port_number
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -64,3 +64,4 @@ resource "aws_security_group" "custom_security_group" {
     "Name" = "custom_security_group"
   }
 }
+
