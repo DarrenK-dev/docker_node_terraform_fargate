@@ -10,5 +10,5 @@ variable "aws_ecr_repository_name" {
 
 variable "fargate_desired_count" {
   type    = number
-  default = 2
+  default = 1
 }

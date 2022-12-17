@@ -11,7 +11,7 @@
 
 You'll require an aws user linked to terraform - I will be using the `default` profile for all commands in this tutorial.
 
-## 1. Create our base terraform files and configuration
+## 1. Create our base terraform files and confi`guration
 
 In this tutorials I will be working in a directory located at `~/temp/node_docker_fargate`.
 
