@@ -12,3 +12,4 @@ variable "fargate_desired_count" {
   type    = number
   default = 1
 }
+

@@ -6,3 +6,7 @@ node_modules
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+_python/
+
+todo/

@@ -10,7 +10,6 @@ eni=$(aws ecs describe-tasks --cluster backend_cluster_example_app --task $task_
 # aws ec2 describe-network-interfaces --network-interface-ids eni-0d090ab283cdc010a | jq -r .NetworkInterfaces[0].Association.PublicIp
 public_ip=$(aws ec2 describe-network-interfaces --network-interface-ids $eni | jq -r .NetworkInterfaces[0].Association.PublicIp)
 
-# Get the port number
-port=$(cd ../deployment && terraform output port)
 
-echo "Fargate task public ip address = http://${public_ip}:${port}"
+
+echo "Fargate task[0] public ip address = http://${public_ip}"
